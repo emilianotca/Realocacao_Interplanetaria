@@ -17,4 +17,6 @@ void test_Element()
     std::string test_data("Testing 123@!");
     subject_0->set_data(test_data);
     assert(subject_0->get_data() == test_data);
+
+    delete subject_0;
 }
