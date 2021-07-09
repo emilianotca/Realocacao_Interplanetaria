@@ -6,5 +6,6 @@
 #define REALOCACAO_INTERPLANETARIA_TESTCASES_H
 
 void test_Element();
+void test_Queue_Cell();
 
 #endif //REALOCACAO_INTERPLANETARIA_TESTCASES_H
