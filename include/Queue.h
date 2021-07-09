@@ -11,14 +11,14 @@ class Queue
 {
 public:
     Queue();
-    ~Queue();
+    virtual ~Queue();
     virtual void insert(std::string element_data) = 0; // Cell insertion method
     virtual void remove() = 0; // Cell removal method
     virtual void clear() = 0; // Delete all cells and make the Queue clean
     virtual int element_count() const; // Returns the cell count
 
 
-private:
+protected:
     int size_of_queue;
 };
 
