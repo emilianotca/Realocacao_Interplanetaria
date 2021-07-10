@@ -5,13 +5,12 @@
 #ifndef REALOCACAO_INTERPLANETARIA_SERVER_H
 #define REALOCACAO_INTERPLANETARIA_SERVER_H
 
-#include <string>
 #include "Linked_Queue.h"
 
 class Server
 {
 public:
-    Server(std::string new_server_id);
+    Server(int new_server_id);
     ~Server();
 
 
