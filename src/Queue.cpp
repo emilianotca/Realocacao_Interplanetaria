@@ -10,5 +10,5 @@ Queue::~Queue() {}
 
 int Queue::element_count() const
 {
-    return size_of_queue;
+    return this->size_of_queue;
 }

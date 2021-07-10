@@ -13,11 +13,9 @@ public:
     Queue();
     virtual ~Queue();
     virtual void insert(std::string element_data) = 0; // Cell insertion method
-    virtual void remove() = 0; // Cell removal method
-    virtual void clear() = 0; // Delete all cells and make the Queue clean
+    virtual std::string remove() = 0; // Cell removal method
     virtual int element_count() const; // Returns the cell count
-
-
+    virtual bool is_empty() const = 0; // Testing queue emptiness
 protected:
     int size_of_queue;
 };
