@@ -13,7 +13,6 @@ public:
     Server(int new_server_id);
     ~Server();
 
-
 private:
     std::string server_id;
     Linked_Queue* server_buffer;
