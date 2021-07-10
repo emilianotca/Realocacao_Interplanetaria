@@ -5,17 +5,17 @@
 #include <iostream>
 #include "../include/Queue_Cell.h"
 
-Queue_Cell::Queue_Cell() : element{nullptr}, next_element {nullptr}
+Queue_Cell::Queue_Cell() : element{nullptr}, next_cell {nullptr}
 {
-    element = new Element();
+    this->element = new Element();
 }
 
 Queue_Cell::~Queue_Cell()
 {
-    delete element;
+    delete this->element;
 }
 
 void Queue_Cell::print() const
 {
-    std::cout << element->get_data() << std::endl;
+    std::cout << this->element->get_data() << std::endl;
 }

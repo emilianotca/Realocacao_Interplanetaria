@@ -6,7 +6,6 @@
 #define REALOCACAO_INTERPLANETARIA_QUEUE_CELL_H
 
 #include "../include/Element.h"
-#include "../include/Queue.h"
 
 class Queue_Cell
 {
@@ -17,9 +16,9 @@ public:
 
 private:
     Element* element;
-    Queue_Cell* next_element;
+    Queue_Cell* next_cell;
 
-    friend Queue;
+    friend class Linked_Queue;
 };
 
 #endif //REALOCACAO_INTERPLANETARIA_QUEUE_CELL_H
