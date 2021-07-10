@@ -17,7 +17,8 @@ public:
     virtual void insert(std::string element_data) override; // Cell insertion method
     virtual std::string remove() override; // Cell removal method
     virtual int element_count() const override; // Returns the cell count
-    virtual bool is_empty() const override;
+    virtual bool is_empty() const override; // Tests queue emptiness
+    virtual void print() const override; // Print current elements in queue
     void clear(); // Delete the cells
 
 private:

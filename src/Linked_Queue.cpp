@@ -15,7 +15,14 @@ Linked_Queue::Linked_Queue() : Queue(), front {nullptr}, back {nullptr}
 
 Linked_Queue::~Linked_Queue() noexcept
 {
+    // Clearing queue
     this->clear();
+
+    // Clearing head and updating pointers to prevent dangling pointer
+    delete this->front;
+
+   this->front = nullptr;
+   this->back = nullptr;
 }
 
 void Linked_Queue::insert(std::string element_data)
@@ -74,7 +81,32 @@ bool Linked_Queue::is_empty() const
     return (this->front == this->back);
 }
 
+void Linked_Queue::print() const
+{
+    auto* current_cell = this->front->next_cell;
+
+    for(auto control {0}; control < this->element_count(); control++)
+    {
+        current_cell->print();
+
+        current_cell = current_cell->next_cell;
+    }
+}
+
 void Linked_Queue::clear()
 {
-    // TODO: Implement it.
+    // Sanity Check
+    if(!this->is_empty())
+    {
+        // Deallocating cells
+        for(auto control {0}; control < this->element_count(); control++)
+        {
+            auto* T_killer_cell = this->front->next_cell; // Points to the cell that will be deallocated
+            delete this->front;
+            this->front = T_killer_cell;
+        }
+
+        // Setting Queue's variables
+        this->size_of_queue = 0;
+    }
 }
