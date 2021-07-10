@@ -12,4 +12,6 @@ add_executable(Realocacao_Interplanetaria
         include/Queue_Cell.h
         src/Queue_Cell.cpp
         include/Queue.h
-        src/Queue.cpp include/Linked_Queue.h src/Linked_Queue.cpp)
+        src/Queue.cpp
+        include/Linked_Queue.h
+        src/Linked_Queue.cpp)

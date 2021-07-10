@@ -16,6 +16,7 @@ public:
     virtual std::string remove() = 0; // Cell removal method
     virtual int element_count() const; // Returns the cell count
     virtual bool is_empty() const = 0; // Testing queue emptiness
+    virtual void print() const = 0; // Print current elements in the queue
 protected:
     int size_of_queue;
 };
