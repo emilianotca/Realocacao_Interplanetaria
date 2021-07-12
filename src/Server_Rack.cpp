@@ -46,7 +46,7 @@ void Server_Rack::change_status(int server_id, int new_status)
     // Sanity check
     if(!this->check_id(server_id))
     {
-        throw std::logic_error("ID not present in server rack.");
+        throw std::logic_error("There's no server with such ID!");
     }
 
     try
@@ -88,7 +88,52 @@ bool Server_Rack::check_id(int server_id) const
     return false;
 }
 
-int Server_Rack::active_servers() const
+int Server_Rack::active_servers() const // TODO: Change it to consider inactive servers.
 {
     return this->number_of_servers;
+}
+
+void Server_Rack::add_to_buffer(int server_id, std::string data)
+{
+    // Sanity check
+    if(!this->check_id(server_id))
+    {
+        throw std::logic_error("There's no server with such ID!");
+    }
+
+    try
+    {
+        this->rack[server_id].load_data(data);
+
+    }catch(std::logic_error& except)
+    {
+        std::cerr << except.what() << std::endl;
+    }
+}
+
+std::string Server_Rack::upload_meganet(int server_id)
+{
+    // Sanity check
+    if(!this->check_id(server_id))
+    {
+        throw std::logic_error("There's no server with such ID!");
+    }
+
+    std::string uploaded_data {};
+
+    try
+    {
+        uploaded_data = this->rack[server_id].send_data();
+        return uploaded_data;
+
+    }catch(std::logic_error& except)
+    {
+        std::cerr << except.what() << std::endl;
+        return uploaded_data;
+    }
+}
+
+void Server_Rack::check_server_buffer(int server_id) const
+{
+    // TODO: Implement check buffer
 }
