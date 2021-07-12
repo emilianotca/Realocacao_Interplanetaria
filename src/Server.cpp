@@ -50,15 +50,36 @@ void Server::set_status(int new_status)
 
 void Server::check_buffer() const
 {
-    this->server_buffer->print();
+    if(this->server_status == 1)
+    {
+        this->server_buffer->print();
+    }
+    else
+    {
+        throw std::logic_error("Server is down!");
+    }
 }
 
 void Server::load_data(std::string data)
 {
-    this->server_buffer->insert(data);
+    if(this->server_status == 1)
+    {
+        this->server_buffer->insert(data);
+    }
+    else
+    {
+        throw std::logic_error("Server is down!");
+    }
 }
 
 std::string Server::send_data()
 {
-    return this->server_buffer->remove();
+    if(this->server_status == 1)
+    {
+        return this->server_buffer->remove();
+    }
+    else
+    {
+        throw std::logic_error("Server is down!");
+    }
 }
