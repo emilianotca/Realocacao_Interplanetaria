@@ -10,9 +10,11 @@
 class Server
 {
 public:
+    Server();
     Server(int new_server_id);
     ~Server();
     int get_id() const;
+    void set_id(int new_id);
     int get_status() const;
     void set_status(int new_status);
 

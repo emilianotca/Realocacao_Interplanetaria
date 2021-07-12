@@ -6,9 +6,14 @@
 #include <stdexcept>
 
 // Constructor and Destructor
+Server::Server() : server_id {-1}, server_status {1}, server_buffer {nullptr}
+{
+    this->server_buffer = new Linked_Queue();
+}
+
 Server::Server(int new_server_id) : server_id {new_server_id}, server_status {1}, server_buffer {nullptr}
 {
-    server_buffer = new Linked_Queue();
+    this->server_buffer = new Linked_Queue();
 }
 
 Server::~Server()
@@ -20,6 +25,11 @@ Server::~Server()
 int Server::get_id() const
 {
     return this->server_id;
+}
+
+void Server::set_id(int new_id)
+{
+    this->server_id = new_id;
 }
 
 int Server::get_status() const
