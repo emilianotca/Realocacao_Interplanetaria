@@ -157,6 +157,31 @@ void test_Server()
 
     subject_0->check_buffer(); // Expecting test_data_2
 
+    // Testing data manipulation with server down
+    subject_0->set_status(0); // Server inactive
+
+    try
+    {
+        subject_0->load_data(test_data_2);
+
+    }catch(std::logic_error& except)
+    {
+        flag = 3;
+    }
+
+    assert(flag == 3);
+
+    try
+    {
+        sent_data = subject_0->send_data();
+
+    }catch(std::logic_error& except)
+    {
+        flag = 4;
+    }
+
+    assert(flag == 4);
+
     delete subject_0;
 }
 
@@ -165,7 +190,7 @@ void test_Server_Rack()
     // Initializing a new rack with the default number of servers
     auto* subject_0 = new Server_Rack();
 
-    assert(subject_0->active_servers() == 1);
+    assert(subject_0->total_servers() == 1);
     assert(subject_0->check_id(0));
     assert(subject_0->check_status(0) == 1);
 
@@ -174,10 +199,10 @@ void test_Server_Rack()
     // Initializing a new rack with a custom number of server
     subject_0 = new Server_Rack(20);
 
-    assert(subject_0->active_servers() == 20); // Expecting 20 active servers
+    assert(subject_0->total_servers() == 20); // Expecting 20 active servers
 
     // Testing initial configurations
-    for(auto control {0}; control < subject_0->active_servers(); control++)
+    for(auto control {0}; control < subject_0->total_servers(); control++)
     {
         assert(subject_0->check_id(control));
         assert(subject_0->check_status(control));
@@ -197,7 +222,7 @@ void test_Server_Rack()
     subject_0->change_status(10, 0);
     subject_0->change_status(15, 0);
 
-    for(auto control {0}; control < subject_0->active_servers(); control++)
+    for(auto control {0}; control < subject_0->total_servers(); control++)
     {
         if(subject_0->check_status(control) == 1)
         {
@@ -208,6 +233,30 @@ void test_Server_Rack()
             std::cout << "OFFLINE" << std::endl;
         }
     }
+
+    // Testing individual buffer management
+    std::string test_data_0 = "TEST 0101010";
+    std::string test_data_1 = "TEST 1000101";
+    std::string test_data_2 = "TEST 0000000";
+
+    subject_0->add_to_buffer(18, test_data_0);
+    subject_0->add_to_buffer(0, test_data_1);
+    subject_0->add_to_buffer(10, test_data_2); // Should not work
+    subject_0->add_to_buffer(15, test_data_2); // Should not work either
+
+    // Testing buffer operations
+    subject_0->add_to_buffer(18, test_data_1);
+    subject_0->add_to_buffer(18, test_data_2);
+
+    subject_0->check_server_buffer(18); // Expecting test_data_0 to 2
+
+    subject_0->upload_meganet(18);
+    subject_0->upload_meganet(18);
+
+    subject_0->check_server_buffer(18); // Expecting test_data_2
+
+    subject_0->upload_meganet(10); // Should not work
+    subject_0->check_server_buffer(10); // Should not work
 
     delete subject_0;
 }

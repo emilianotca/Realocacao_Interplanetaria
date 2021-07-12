@@ -16,7 +16,7 @@ public:
     void change_status(int server_id, int new_status);
     int check_status(int server_id) const;
     bool check_id(int server_id) const;
-    int active_servers() const;
+    int total_servers() const;
     void add_to_buffer(int server_id, std::string data);
     std::string upload_meganet(int server_id);
     void check_server_buffer(int server_id) const;
