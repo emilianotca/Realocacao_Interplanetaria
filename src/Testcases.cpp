@@ -7,6 +7,7 @@
 #include "../include/Queue_Cell.h"
 #include "../include/Linked_Queue.h"
 #include "../include/Server.h"
+#include "../include/Server_Rack.h"
 
 #include <iostream>
 #include <cassert>
@@ -134,6 +135,16 @@ void test_Server()
     subject_0->set_id(132);
 
     assert(subject_0->get_id() == 132);
+
+    delete subject_0;
+}
+
+void test_Server_Rack()
+{
+    // Initializing a new rack with the default number of servers
+    auto* subject_0 = new Server_Rack();
+
+    assert(subject_0->active_servers() == 1);
 
     delete subject_0;
 }
