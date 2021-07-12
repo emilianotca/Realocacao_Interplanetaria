@@ -145,6 +145,48 @@ void test_Server_Rack()
     auto* subject_0 = new Server_Rack();
 
     assert(subject_0->active_servers() == 1);
+    assert(subject_0->check_id(0));
+    assert(subject_0->check_status(0) == 1);
+
+    delete subject_0;
+
+    // Initializing a new rack with a custom number of server
+    subject_0 = new Server_Rack(20);
+
+    assert(subject_0->active_servers() == 20); // Expecting 20 active servers
+
+    // Testing initial configurations
+    for(auto control {0}; control < subject_0->active_servers(); control++)
+    {
+        assert(subject_0->check_id(control));
+        assert(subject_0->check_status(control));
+    }
+
+    // Testing custom configurations
+    subject_0->change_status(3, 0); // Turning off server 4
+
+    assert(subject_0->check_status(3) == 0);
+
+    subject_0->change_status(3, 1); // Turning on server 4
+
+    subject_0->change_status(5, -1); // Expecting exception to be handled
+
+    // Printing out statuses
+    subject_0->change_status(5, 0);
+    subject_0->change_status(10, 0);
+    subject_0->change_status(15, 0);
+
+    for(auto control {0}; control < subject_0->active_servers(); control++)
+    {
+        if(subject_0->check_status(control) == 1)
+        {
+            std::cout << "ONLINE" << std::endl;
+        }
+        else
+        {
+            std::cout << "OFFLINE" << std::endl;
+        }
+    }
 
     delete subject_0;
 }
