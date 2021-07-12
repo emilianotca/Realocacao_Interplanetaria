@@ -47,3 +47,18 @@ void Server::set_status(int new_status)
 
     this->server_status = new_status;
 }
+
+void Server::check_buffer() const
+{
+    this->server_buffer->print();
+}
+
+void Server::load_data(std::string data)
+{
+    this->server_buffer->insert(data);
+}
+
+std::string Server::send_data()
+{
+    return this->server_buffer->remove();
+}

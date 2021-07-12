@@ -136,6 +136,27 @@ void test_Server()
 
     assert(subject_0->get_id() == 132);
 
+    // Testing data handling
+    std::string test_data_0 = "TEST 0101010";
+    std::string test_data_1 = "TEST 1000101";
+    std::string test_data_2 = "TEST 0000000";
+
+    subject_0->load_data(test_data_0);
+    subject_0->load_data(test_data_1);
+    subject_0->load_data(test_data_2);
+
+    subject_0->check_buffer(); // Expecting test_data_0 to 2
+
+    auto sent_data = subject_0->send_data();
+
+    assert(sent_data == test_data_0);
+
+    sent_data = subject_0->send_data();
+
+    assert(sent_data == test_data_1);
+
+    subject_0->check_buffer(); // Expecting test_data_2
+
     delete subject_0;
 }
 

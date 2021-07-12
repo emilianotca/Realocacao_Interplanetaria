@@ -6,6 +6,7 @@
 #define REALOCACAO_INTERPLANETARIA_SERVER_H
 
 #include "Linked_Queue.h"
+#include <string>
 
 class Server
 {
@@ -17,6 +18,9 @@ public:
     void set_id(int new_id);
     int get_status() const;
     void set_status(int new_status);
+    void check_buffer() const;
+    void load_data(std::string data);
+    std::string send_data();
 
 private:
     int server_id;
