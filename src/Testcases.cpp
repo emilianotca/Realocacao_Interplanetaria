@@ -91,11 +91,18 @@ void test_Linked_Queue()
 
 void test_Server()
 {
-    // Initializing a single server
-    auto* subject_0 = new Server(0);
+    // Testing default constructor
+    auto* subject_0 = new Server();
+
+    assert(subject_0->get_id() == -1);
+
+    delete subject_0;
+
+    // Initializing a single server with one arg constructor
+    subject_0 = new Server(54);
 
     // Testing initial conditions
-    assert(subject_0->get_id() == 0);
+    assert(subject_0->get_id() == 54);
     assert(subject_0->get_status() == 1);
 
     // Testing invalid settings
@@ -122,6 +129,11 @@ void test_Server()
     }
 
     assert(flag == 2);
+
+    // Testing ID setting
+    subject_0->set_id(132);
+
+    assert(subject_0->get_id() == 132);
 
     delete subject_0;
 }
