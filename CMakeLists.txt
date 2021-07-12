@@ -19,5 +19,5 @@ add_executable(Realocacao_Interplanetaria
         src/Server.cpp
         include/Control_Center.h
         src/Control_Center.cpp
-        include/Vector.h
-        src/Vector.cpp)
+        include/Server_Rack.h
+        src/Server_Rack.cpp)

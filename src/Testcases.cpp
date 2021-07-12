@@ -6,6 +6,7 @@
 #include "../include/Element.h"
 #include "../include/Queue_Cell.h"
 #include "../include/Linked_Queue.h"
+#include "../include/Server.h"
 
 #include <iostream>
 #include <cassert>
@@ -86,4 +87,41 @@ void test_Linked_Queue()
     assert(returned_value == test_string_3);
     assert(subject_0->element_count() == 0);
     assert(subject_0->is_empty());
+}
+
+void test_Server()
+{
+    // Initializing a single server
+    auto* subject_0 = new Server(0);
+
+    // Testing initial conditions
+    assert(subject_0->get_id() == 0);
+    assert(subject_0->get_status() == 1);
+
+    // Testing invalid settings
+    int flag = 0;
+
+    try
+    {
+        subject_0->set_status(-1); // Should throw an exception
+
+    } catch(std::logic_error& except)
+    {
+        flag = 1;
+    }
+
+    assert(flag == 1);
+
+    try
+    {
+        subject_0->set_status(-1); // Should NOT throw an exception
+
+    } catch(std::logic_error& except)
+    {
+        flag = 2;
+    }
+
+    assert(flag == 2);
+
+    delete subject_0;
 }

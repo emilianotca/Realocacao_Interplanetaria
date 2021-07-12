@@ -12,9 +12,13 @@ class Server
 public:
     Server(int new_server_id);
     ~Server();
+    int get_id() const;
+    int get_status() const;
+    void set_status(int new_status);
 
 private:
-    std::string server_id;
+    int server_id;
+    int server_status;
     Linked_Queue* server_buffer;
 };
 
