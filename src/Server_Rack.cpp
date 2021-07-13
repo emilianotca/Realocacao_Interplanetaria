@@ -111,7 +111,7 @@ void Server_Rack::add_to_buffer(int server_id, std::string data)
     }
 }
 
-std::string Server_Rack::upload_meganet(int server_id)
+std::string Server_Rack::depart(int server_id)
 {
     // Sanity check
     if(!this->check_id(server_id))
