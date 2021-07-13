@@ -28,5 +28,18 @@ void Control_Center::INFO(int server_id, std::string data)
 
 void Control_Center::WARN(int server_id, int position)
 {
+    // Checking if ID is valid
+    if(this->rack.check_id(server_id))
+    {
+        this->rack.prioritize_data(server_id, position);
+    }
+    else
+    {
+        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+    }
+}
+
+void TRAN(int server_1_id, int server_2_id)
+{
 
 }
