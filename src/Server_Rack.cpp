@@ -150,3 +150,15 @@ void Server_Rack::check_server_buffer(int server_id) const
         std::cerr << except.what() << std::endl;
     }
 }
+
+void Server_Rack::prioritize_data(int server_id, int position)
+{
+    try
+    {
+        this->rack[server_id].prioritize_data(position);
+
+    }catch(std::logic_error& except)
+    {
+        std::cerr << except.what() << std::endl;
+    }
+}

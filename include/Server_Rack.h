@@ -20,6 +20,7 @@ public:
     void add_to_buffer(int server_id, std::string data);
     std::string upload_meganet(int server_id);
     void check_server_buffer(int server_id) const;
+    void prioritize_data(int server_id, int position);
 
 private:
     int number_of_servers;

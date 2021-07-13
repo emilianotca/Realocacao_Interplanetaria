@@ -21,6 +21,7 @@ public:
     void check_buffer() const;
     void load_data(std::string data);
     std::string send_data();
+    void prioritize_data(int position);
 
 private:
     int server_id;

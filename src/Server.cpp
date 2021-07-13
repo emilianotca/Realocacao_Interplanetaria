@@ -3,6 +3,7 @@
 //
 
 #include "../include/Server.h"
+#include <iostream>
 #include <stdexcept>
 
 // Constructor and Destructor
@@ -82,4 +83,9 @@ std::string Server::send_data()
     {
         throw std::logic_error("Server is down!");
     }
+}
+
+void Server::prioritize_data(int position)
+{
+    this->server_buffer->queue_jump(position);
 }
