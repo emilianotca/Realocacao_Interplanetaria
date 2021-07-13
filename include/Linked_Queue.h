@@ -20,6 +20,7 @@ public:
     virtual bool is_empty() const override; // Tests queue emptiness
     virtual void print() const override; // Print current elements in queue
     void clear(); // Delete the cells
+    void queue_jump(int position); // Cut in the queue
 
 private:
     Queue_Cell* front; // Holds the head

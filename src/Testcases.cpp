@@ -8,6 +8,7 @@
 #include "../include/Linked_Queue.h"
 #include "../include/Server.h"
 #include "../include/Server_Rack.h"
+#include "../include/Control_Center.h"
 
 #include <iostream>
 #include <cassert>
@@ -88,6 +89,69 @@ void test_Linked_Queue()
     assert(returned_value == test_string_3);
     assert(subject_0->element_count() == 0);
     assert(subject_0->is_empty());
+
+    // Testing cutting in line method
+    std::string test_string_4 {"Testing 4"};
+
+    subject_0->insert(test_string_1);
+    subject_0->insert(test_string_2);
+    subject_0->insert(test_string_3);
+    subject_0->insert(test_string_4);
+
+    auto flag {0};
+
+    try
+    {
+        subject_0->queue_jump(-1);
+
+    }catch(std::logic_error& except)
+    {
+        flag = 1;
+    }
+
+    assert(flag == 1);
+
+    try
+    {
+        subject_0->queue_jump(7);
+
+    }catch(std::logic_error& except)
+    {
+        flag = 2;
+    }
+
+    assert(flag == 2);
+
+    subject_0->queue_jump(3); // Expecting test_string_3 1 2 4 to be the new order
+
+    returned_value = subject_0->remove();
+
+    assert(returned_value == test_string_3);
+
+    returned_value = subject_0->remove();
+
+    assert(returned_value == test_string_1);
+
+    returned_value = subject_0->remove();
+
+    assert(returned_value == test_string_2);
+
+    returned_value = subject_0->remove();
+
+    assert(returned_value == test_string_4);
+
+    subject_0->insert(test_string_1);
+    subject_0->insert(test_string_2);
+
+    subject_0->queue_jump(1);
+
+    returned_value = subject_0->remove();
+
+    assert(returned_value == test_string_1);
+
+    returned_value = subject_0->remove();
+
+    assert(returned_value == test_string_2);
 }
 
 void test_Server()
@@ -259,4 +323,9 @@ void test_Server_Rack()
     subject_0->check_server_buffer(10); // Should not work
 
     delete subject_0;
+}
+
+void test_Control_Center()
+{
+
 }

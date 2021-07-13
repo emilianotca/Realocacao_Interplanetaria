@@ -110,3 +110,34 @@ void Linked_Queue::clear()
         this->size_of_queue = 0;
     }
 }
+
+void Linked_Queue::queue_jump(int position)
+{
+    // Sanity Check
+    if(!this->is_empty() && position < this->element_count() && position > 0)
+    {
+        // Searching for cell
+        auto* interest_cell = this->front;
+        auto control {0};
+        auto second_last = position - 1;
+
+        while(control < second_last)
+        {
+            interest_cell = interest_cell->next_cell;
+
+            control++;
+        }
+
+        // Removing jumper cell from between two cells (or one cell and the abyss...)
+        auto* jumper = interest_cell->next_cell;
+        interest_cell->next_cell = jumper->next_cell;
+
+        // Inserting the jumper at the first position
+        jumper->next_cell = this->front->next_cell;
+        this->front->next_cell = jumper;
+    }
+    else
+    {
+        throw std::logic_error("ERROR: Position not valid or Queue empty");
+    }
+}
