@@ -114,7 +114,7 @@ void Linked_Queue::clear()
 void Linked_Queue::queue_jump(int position)
 {
     // Sanity Check
-    if(!this->is_empty() && position < this->element_count() && position > 0)
+    if(!this->is_empty() && position <= this->element_count() && position > 0)
     {
         // Searching for cell
         auto* interest_cell = this->front;
