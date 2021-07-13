@@ -327,5 +327,14 @@ void test_Server_Rack()
 
 void test_Control_Center()
 {
+    auto* subject_0 = new Control_Center(10); // Initializing control center with 10 servers.
 
+    std::string test_data_0 = "TEST 0101010";
+    std::string test_data_1 = "TEST 1000101";
+    std::string test_data_2 = "TEST 0000000";
+
+    // INFO
+    subject_0->INFO(0, test_data_0);
+    subject_0->INFO(0, test_data_2);
+    subject_0->INFO(50, test_data_1); // Error
 }
