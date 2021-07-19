@@ -89,3 +89,8 @@ void Server::prioritize_data(int position)
 {
     this->server_buffer->queue_jump(position);
 }
+
+void Server::erase_buffer()
+{
+    this->server_buffer->clear();
+}

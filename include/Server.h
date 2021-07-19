@@ -22,6 +22,7 @@ public:
     void load_data(std::string data);
     std::string send_data();
     void prioritize_data(int position);
+    void erase_buffer();
 
 private:
     int server_id;
