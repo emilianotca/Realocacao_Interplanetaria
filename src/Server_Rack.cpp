@@ -162,3 +162,12 @@ void Server_Rack::prioritize_data(int server_id, int position)
         std::cerr << except.what() << std::endl;
     }
 }
+
+void Server_Rack::display_and_erase(int server_id)
+{
+    // First step: Display current data held by selected server
+    this->rack[server_id].check_buffer();
+
+    // Second step: Erase buffer of selected server
+    this->rack[server_id].erase_buffer();
+}
