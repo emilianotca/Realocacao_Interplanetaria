@@ -39,7 +39,23 @@ void Control_Center::WARN(int server_id, int position)
     }
 }
 
-void TRAN(int server_1_id, int server_2_id)
+void Control_Center::TRAN(int server_1_id, int server_2_id)
 {
 
+}
+
+void Control_Center::ERRO(int server_id)
+{
+    // Checking if ID is valid
+    if(this->rack.check_id(server_id))
+    {
+        // Displaying error message and printing out buffer content
+        std::cout << "ERRO " << server_id << std::endl;
+
+        this->rack.display_and_erase(server_id);
+    }
+    else
+    {
+        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+    }
 }

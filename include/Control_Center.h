@@ -17,6 +17,7 @@ public:
     void INFO(int server_id, std::string data);
     void WARN(int server_id, int position);
     void TRAN(int server_1_id, int server_2_id);
+    void ERRO(int server_id);
 
 private:
     Server_Rack rack;
