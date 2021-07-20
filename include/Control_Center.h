@@ -22,7 +22,7 @@ public:
     void TRAN(int server_1_id, int server_2_id);
     void ERRO(int server_id);
     void SEND();
-    void FLUSH() const;
+    void FLUSH();
 
 private:
     Server_Rack rack;

@@ -107,7 +107,7 @@ void Control_Center::SEND()
     }
 }
 
-void Control_Center::FLUSH() const
+void Control_Center::FLUSH()
 {
     // Displaying conscience history
     std::cout << "----------HISTORY----------" << std::endl;
@@ -126,5 +126,11 @@ void Control_Center::FLUSH() const
         {
             continue;
         }
+    }
+
+    // Erasing the remaining content
+    for(auto control {0}; control < this->rack.total_servers(); control++)
+    {
+        this->rack.display_and_erase(control, false);
     }
 }
