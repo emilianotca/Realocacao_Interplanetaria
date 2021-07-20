@@ -121,16 +121,8 @@ std::string Server_Rack::depart(int server_id)
 
     std::string uploaded_data {};
 
-    try
-    {
-        uploaded_data = this->rack[server_id].send_data();
-        return uploaded_data;
-
-    }catch(std::logic_error& except)
-    {
-        std::cerr << except.what() << std::endl;
-        return uploaded_data;
-    }
+    uploaded_data = this->rack[server_id].send_data();
+    return uploaded_data;
 }
 
 void Server_Rack::check_server_buffer(int server_id) const

@@ -81,7 +81,7 @@ std::string Server::send_data()
     }
     else
     {
-        throw std::logic_error("Server is down!");
+        throw std::logic_error("Can't send data: Server is either down or currently empty.");
     }
 }
 
