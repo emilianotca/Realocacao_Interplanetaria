@@ -62,9 +62,8 @@ void Control_Center::TRAN(int server_1_id, int server_2_id)
             }
         }
 
-        // Erasing data from source server and disabling it
+        // Erasing data from source server
         this->rack.display_and_erase(server_1_id, false);
-        this->rack.change_status(server_1_id, 0);
     }
     else
     {
