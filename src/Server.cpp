@@ -75,7 +75,7 @@ void Server::load_data(std::string data)
 
 std::string Server::send_data()
 {
-    if(this->server_status == 1)
+    if(this->server_status == 1 && !this->server_buffer->is_empty())
     {
         return this->server_buffer->remove();
     }
