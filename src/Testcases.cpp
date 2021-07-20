@@ -299,6 +299,7 @@ void test_Server_Rack()
     }
 
     // Testing individual buffer management
+
     std::string test_data_0 = "TEST 0101010";
     std::string test_data_1 = "TEST 1000101";
     std::string test_data_2 = "TEST 0000000";
@@ -314,13 +315,25 @@ void test_Server_Rack()
 
     subject_0->check_server_buffer(18); // Expecting test_data_0 to 2
 
-    subject_0->upload_meganet(18);
-    subject_0->upload_meganet(18);
+    subject_0->depart(18);
+    subject_0->depart(18);
 
     subject_0->check_server_buffer(18); // Expecting test_data_2
 
-    subject_0->upload_meganet(10); // Should not work
+    subject_0->depart(10); // Should not work
     subject_0->check_server_buffer(10); // Should not work
+
+    // Testing prioritization
+    subject_0->add_to_buffer(18, test_data_1);
+    subject_0->add_to_buffer(18, test_data_0);
+
+    subject_0->check_server_buffer(18); // Expecting test_data_2
+
+    subject_0->prioritize_data(18, 3);
+
+    std::cout << "----------------------------------------------------------" << std::endl;
+
+    subject_0->check_server_buffer(18);
 
     delete subject_0;
 }
@@ -336,5 +349,20 @@ void test_Control_Center()
     // INFO
     subject_0->INFO(0, test_data_0);
     subject_0->INFO(0, test_data_2);
+    subject_0->INFO(0, test_data_1);
     subject_0->INFO(50, test_data_1); // Error
+
+    // WARN
+    subject_0->WARN(0, 3);
+
+    subject_0->INFO(0, "EMILIANO 00101010");
+    subject_0->INFO(1, "ISABELA 10001010");
+    subject_0->INFO(1, "ADRIANO 11111111");
+    subject_0->INFO(1, "MARCIA 111111111");
+    subject_0->INFO(9, "SEXO 101010");
+    subject_0->INFO(9, "VAGINA 123");
+    subject_0->TRAN(1, 9);
+    subject_0->SEND();
+    subject_0->SEND();
+    subject_0->FLUSH();
 }
