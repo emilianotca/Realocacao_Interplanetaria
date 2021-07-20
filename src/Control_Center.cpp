@@ -41,7 +41,35 @@ void Control_Center::WARN(int server_id, int position)
 
 void Control_Center::TRAN(int server_1_id, int server_2_id)
 {
+    // Checking if ID is valid
+    if(this->rack.check_id(server_1_id) && this->rack.check_id(server_2_id))
+    {
+        // Transferring content from server_1_id to server_2_id]
+        std::string transferred_string;
 
+        while(true)
+        {
+            try
+            {
+                // Transferring data
+                transferred_string = this->rack.depart(server_1_id);
+                this->rack.add_to_buffer(server_2_id, transferred_string);
+
+
+            }catch(std::logic_error& exception)
+            {
+                break;
+            }
+        }
+
+        // Erasing data from source server and disabling it
+        this->rack.display_and_erase(server_1_id, false);
+        this->rack.change_status(server_1_id, 0);
+    }
+    else
+    {
+        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+    }
 }
 
 void Control_Center::ERRO(int server_id)
@@ -52,10 +80,52 @@ void Control_Center::ERRO(int server_id)
         // Displaying error message and printing out buffer content
         std::cout << "ERRO " << server_id << std::endl;
 
-        this->rack.display_and_erase(server_id);
+        this->rack.display_and_erase(server_id, true);
     }
     else
     {
         std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+    }
+}
+
+void Control_Center::SEND()
+{
+    // Looping through the servers and dispatching their buffer's first on line
+    std::string departed;
+
+    for(auto control {0}; control < this->rack.total_servers(); control++)
+    {
+        // Sanity check
+        try
+        {
+            departed = this->rack.depart(control);
+            this->conscience_history.add_to_history(departed);
+
+        }catch(std::logic_error& exception)
+        {
+           continue;
+        }
+    }
+}
+
+void Control_Center::FLUSH() const
+{
+    // Displaying conscience history
+    std::cout << "----------HISTORY----------" << std::endl;
+    this->conscience_history.print_history();
+    std::cout << "---------------------------" << std::endl;
+
+    // Looping through the servers and displaying the remaining content of their buffers
+    for(auto control {0}; control < this->rack.total_servers(); control++)
+    {
+        // Sanity check
+        try
+        {
+            this->rack.check_server_buffer(control);
+
+        }catch(std::logic_error& exception)
+        {
+            continue;
+        }
     }
 }
