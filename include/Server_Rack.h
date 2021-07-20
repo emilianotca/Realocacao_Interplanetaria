@@ -21,7 +21,7 @@ public:
     std::string depart(int server_id);
     void check_server_buffer(int server_id) const;
     void prioritize_data(int server_id, int position);
-    void display_and_erase(int server_id);
+    void display_and_erase(int server_id, bool display = true);
 
 private:
     int number_of_servers;

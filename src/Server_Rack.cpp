@@ -133,14 +133,7 @@ void Server_Rack::check_server_buffer(int server_id) const
         throw std::logic_error("There's no server with such ID!");
     }
 
-    try
-    {
-        this->rack[server_id].check_buffer();
-
-    }catch(std::logic_error& except)
-    {
-        std::cerr << except.what() << std::endl;
-    }
+    this->rack[server_id].check_buffer();
 }
 
 void Server_Rack::prioritize_data(int server_id, int position)
@@ -155,10 +148,13 @@ void Server_Rack::prioritize_data(int server_id, int position)
     }
 }
 
-void Server_Rack::display_and_erase(int server_id)
+void Server_Rack::display_and_erase(int server_id, bool display)
 {
     // First step: Display current data held by selected server
-    this->rack[server_id].check_buffer();
+    if(display)
+    {
+        this->rack[server_id].check_buffer();
+    }
 
     // Second step: Erase buffer of selected server
     this->rack[server_id].erase_buffer();
