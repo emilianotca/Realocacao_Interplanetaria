@@ -110,9 +110,7 @@ void Control_Center::SEND()
 void Control_Center::FLUSH()
 {
     // Displaying conscience history
-    std::cout << "----------HISTORY----------" << std::endl;
     this->conscience_history.print_history();
-    std::cout << "---------------------------" << std::endl;
 
     // Looping through the servers and displaying the remaining content of their buffers
     for(auto control {0}; control < this->rack.total_servers(); control++)
