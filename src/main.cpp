@@ -7,7 +7,7 @@
 int main(int argc, char* argv[])
 {
     // Opening file
-    std::ifstream input_file (argv[1]);
+    std::ifstream input_file ("in2.txt");
     
     std::string current_line;
     std::string parsing_aux;
@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 
 			// Data
 			command_aux_1 = current_line.substr(7, current_line.size());
-			
+			command_aux_1 = command_aux_1.substr(1, command_aux_1.size()-2); // Filtering out quotes
 			// Calling INFO
 			main_control.INFO(command_aux_2, command_aux_1);
 
