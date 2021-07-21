@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 
 	Control_Center main_control(number_of_servers);
 
-	while(getline(input_file, current_line)) // ADDRESS DOUBLE OR TRIPLE DIGIT SERVERS!
+	while(getline(input_file, current_line))
 	{
 		// Reading each line and identifying the corresponding command
 		parsing_aux = current_line.at(0);
@@ -32,11 +32,11 @@ int main(int argc, char* argv[])
 		{
 			// Getting command arguments
 			// Addressee server
-			command_aux_1 = current_line.at(5);
+			command_aux_1 = current_line.substr(current_line.find_first_of(' '), current_line.find_first_of('\"')-current_line.find_first_of(' '));
 			command_aux_2 = std::stoi(command_aux_1);
 
 			// Data
-			command_aux_1 = current_line.substr(7, current_line.size());
+			command_aux_1 = current_line.substr(current_line.find_first_of('\"'), current_line.size());
 			command_aux_1 = command_aux_1.substr(1, command_aux_1.size()-2); // Filtering out quotes
 			// Calling INFO
 			main_control.INFO(command_aux_2, command_aux_1);
