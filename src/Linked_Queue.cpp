@@ -119,9 +119,8 @@ void Linked_Queue::queue_jump(int position)
         // Searching for cell
         auto* interest_cell = this->front;
         auto control {0};
-        auto second_last = position;
 
-        while(control < second_last)
+        while(control < position)
         {
             interest_cell = interest_cell->next_cell;
 
