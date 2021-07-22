@@ -99,9 +99,11 @@ void Linked_Queue::clear()
     if(!this->is_empty())
     {
         // Deallocating cells
+        Queue_Cell* T_killer_cell {nullptr};
+
         for(auto control {0}; control < this->element_count(); control++)
         {
-            auto* T_killer_cell = this->front->next_cell; // Points to the cell that will be deallocated
+            T_killer_cell = this->front->next_cell; // Points to the cell that will be deallocated
             delete this->front;
             this->front = T_killer_cell;
         }
