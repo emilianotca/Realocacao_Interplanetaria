@@ -9,7 +9,7 @@
 // Constructor and Destructor
 Server_Rack::Server_Rack() : number_of_servers {1}
 {
-    // Initializing Server Hack
+    // Initializing Server Rack
     this->rack = new Server [number_of_servers];
 
     // Updating Server IDs
