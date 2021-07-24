@@ -22,7 +22,7 @@ void Control_Center::INFO(int server_id, std::string data)
     }
     else
     {
-        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+        // std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
     }
 }
 
@@ -35,7 +35,7 @@ void Control_Center::WARN(int server_id, int position)
     }
     else
     {
-        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+        // std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
     }
 }
 
@@ -67,7 +67,7 @@ void Control_Center::TRAN(int server_1_id, int server_2_id)
     }
     else
     {
-        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+        // std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
     }
 }
 
@@ -83,7 +83,7 @@ void Control_Center::ERRO(int server_id)
     }
     else
     {
-        std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
+        // std::cerr << "FATAL ERROR: SPECIFIED SERVER DOES NOT EXIST." << std::endl;
     }
 }
 

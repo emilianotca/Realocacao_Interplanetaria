@@ -55,7 +55,7 @@ void Server_Rack::change_status(int server_id, int new_status)
 
     } catch (std::logic_error& except)
     {
-        std::cerr << except.what() << std::endl;
+        // std::cerr << except.what() << std::endl;
     }
 }
 
@@ -107,7 +107,7 @@ void Server_Rack::add_to_buffer(int server_id, std::string data)
 
     }catch(std::logic_error& except)
     {
-        std::cerr << except.what() << std::endl;
+        // std::cerr << except.what() << std::endl;
     }
 }
 
@@ -144,7 +144,7 @@ void Server_Rack::prioritize_data(int server_id, int position)
 
     }catch(std::logic_error& except)
     {
-        std::cerr << except.what() << std::endl;
+        // std::cerr << except.what() << std::endl;
     }
 }
 
